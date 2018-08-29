@@ -1,0 +1,12 @@
+{
+  "lambda": {
+    "role": "ice-cream-shop-executor",
+    "name": "ice-cream-shop",
+    "region": "us-east-2"
+  },
+  "api": {
+    "id": "537ne6evq1",
+    "module": "index",
+    "url": "https://537ne6evq1.execute-api.us-east-2.amazonaws.com/latest"
+  }
+}

@@ -1,0 +1,40 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An Amazon DynamoDB trigger that logs the updates made to a table.
+Resources:
+  TriggerForItemWrite:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: .
+      Description: An Amazon DynamoDB trigger that logs the updates made to a table.
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::713079236950:role/service-role/TriggerForItemWrite'
+      Events:
+        DynamoDB1:
+          Type: DynamoDB
+          Properties:
+            Stream:
+              'Fn::GetAtt':
+                - Table1
+                - StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 100
+      Tags:
+        'lambda-console:blueprint': dynamodb-process-stream
+  Table1:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE

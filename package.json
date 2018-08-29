@@ -1,0 +1,17 @@
+{
+  "name": "aws-lambda-example-DynamoDB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.135.0",
+    "claudia-api-builder": "^4.1.1",
+    "uuid": "^3.3.2"
+  }
+}
